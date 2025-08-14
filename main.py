@@ -15,6 +15,7 @@ import io
 import aiohttp
 from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
+#خطر سريع الاشتعال ممنوع تلعب هنا#
 print('تم تشغيل سورس مرتضى بنجاح') 
 api_id = os.environ.get("API_ID", None)
 api_hash = os.environ.get("API_HASH", None)
@@ -25,10 +26,14 @@ muted_users_file = 'muted_users.pkl'
 time_update_status_file = 'time_update_status.pkl'
 channel_link_file = 'channel_link.pkl'
 
+# إنشاء العميل وتشغيله
 client = TelegramClient(StringSession(session_string), int(api_id), api_hash)
 client.start()
 
+# تعريف المتغير response_file إذا لم يكن معرفًا
+response_file = 'responses.pkl'
 
+# قراءة الردود أو تهيئتها إذا لم توجد
 if os.path.exists(response_file):
     with open(response_file, 'rb') as f:
         responses = pickle.load(f)
